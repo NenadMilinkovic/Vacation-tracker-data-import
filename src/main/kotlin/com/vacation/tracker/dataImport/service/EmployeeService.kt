@@ -9,7 +9,5 @@ class EmployeeService(
     private val employeeRepository: EmployeeRepository
 ){
 
-    fun createEmployeeProfile(employee: Employee): Employee {
-        return employeeRepository.save(employee)
-    }
+    fun createEmployeeProfile(employee: Employee): Employee = employeeRepository.save(employee)
 }
