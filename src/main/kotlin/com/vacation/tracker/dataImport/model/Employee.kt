@@ -14,9 +14,9 @@ class Employee (
     @Column(name = "id")
     val id: UUID = UUID.randomUUID(),
     @Column(name = "email", unique = true, nullable = false)
-    var email: String = "",
+    val email: String = "",
     @Column(name = "password", nullable = false)
-    var password: String = ""
+    val password: String = ""
 ) {
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     val vacations: List<Vacation> = emptyList()

@@ -25,52 +25,25 @@ class DataImportController(
 
     @PostMapping("/importEmployee")
     fun importEmployee(
-        @RequestParam("file") file: MultipartFile
-    ): ResponseEntity<*> {
+        @RequestParam("file", required = true) file: MultipartFile
+    ) {
 
-        val reader = CSVReader(InputStreamReader(file.inputStream))
-        var record: Array<String>?
-        reader.readNext()
-        reader.readNext()
-        while (reader.readNext().also { record = it } != null) {
-            employeeService.createEmployeeProfile(Employee(email = record!![0], password = record!![1]))
-        }
-
-        return ResponseEntity.ok().build<Any>()
+        employeeService.createEmployeeProfile(file)
     }
 
     @PostMapping("/importVacationDays")
     fun importVacationDays(
-        @RequestParam("file") file: MultipartFile
-    ): ResponseEntity<*> {
+        @RequestParam("file", required = true) file: MultipartFile
+    ) {
 
-        val reader = CSVReader(InputStreamReader(file.inputStream))
-        var record: Array<String>?
-        val year = reader.readNext()[1].toInt()
-        reader.readNext()
-        while (reader.readNext().also { record = it } != null) {
-            vacationService.addVacationDays(record!![0], year, record!![1].toInt() )
-        }
-
-        return ResponseEntity.ok().build<Any>()
+        vacationService.addVacationDays(file)
     }
 
     @PostMapping("/importUsedVacationDays")
     fun importUsedVacationDays(
-        @RequestParam("file") file: MultipartFile
-    ): ResponseEntity<*> {
+        @RequestParam("file", required = true) file: MultipartFile
+    ) {
 
-        val reader = CSVReader(InputStreamReader(file.inputStream))
-        var record: Array<String>?
-        val dataFormat = SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.ENGLISH)
-        reader.readNext()
-        while (reader.readNext().also { record = it } != null) {
-            usedVacationService.addUsedVacationDays(
-                record!![0],
-                dataFormat.parse(record!![1]),
-                dataFormat.parse(record!![2]))
-        }
-
-        return ResponseEntity.ok().build<Any>()
+        usedVacationService.addUsedVacationDays(file)
     }
 }
