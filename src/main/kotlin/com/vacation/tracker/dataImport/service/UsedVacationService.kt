@@ -66,11 +66,11 @@ class UsedVacationService(
                 it.usedDays += spendDays
                 it.freeDays -= spendDays
                 vacationRepository.save(it)
+
+                logger.info("Success insert used vacation days for ${employee.email}")
             }
         } ?: run {
             logger.error("Employee ${employee.email} don't have inserted vacation days for $year year")
         }
-        logger.info("Success insert used vacation days for ${employee.email}")
-
     }
 }
