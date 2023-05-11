@@ -8,6 +8,10 @@ Run services with command:
 
     docker compose up
 
+## Header
+
+Every request must have X-API-KEY header and value ABCD 
+
 ## Import Employee Profiles
 
 * **URL:**
