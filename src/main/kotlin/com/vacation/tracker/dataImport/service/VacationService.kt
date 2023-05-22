@@ -21,6 +21,13 @@ class VacationService(
     @Transactional
     fun addVacationDays(file: MultipartFile) {
 
+        if (file.originalFilename!!.contains("vacations_")) {
+            throw Exception("Imported file is not valid")
+        }
+
+        if (file.isEmpty)
+            throw Exception("Empty file")
+
         val reader = CSVReader(InputStreamReader(file.inputStream))
         var record: Array<String>?
         val year = reader.readNext()[1].toInt()

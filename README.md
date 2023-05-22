@@ -4,9 +4,12 @@
 
 Clone also Vacation-tracker-data-search service(https://github.com/NenadMilinkovic/Vacation-tracker-data-search)
 
-Run services with command:
+Run services in next way:
 
-    docker compose up
+* In docker-compose.yml change build path for search service to root folder of it
+* Run command:
+
+  `docker compose up`
 
 ## Header
 

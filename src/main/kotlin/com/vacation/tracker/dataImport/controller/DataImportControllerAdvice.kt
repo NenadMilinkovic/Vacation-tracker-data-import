@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.client.HttpServerErrorException.InternalServerError
 
 @ControllerAdvice(basePackageClasses = [DataImportController::class])
-class DataImportControlerAdvice {
+class DataImportControllerAdvice {
 
     @ExceptionHandler(MissingRequestHeaderException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

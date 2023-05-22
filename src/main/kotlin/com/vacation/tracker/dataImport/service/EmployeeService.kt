@@ -4,7 +4,6 @@ import com.opencsv.CSVReader
 import com.vacation.tracker.dataImport.model.Employee
 import com.vacation.tracker.dataImport.repository.jpa.EmployeeRepository
 import org.springframework.stereotype.Service
-import org.springframework.web.client.HttpClientErrorException.BadRequest
 import org.springframework.web.multipart.MultipartFile
 import java.io.InputStreamReader
 
@@ -14,6 +13,10 @@ class EmployeeService(
 ){
 
     fun createEmployeeProfile(file: MultipartFile) {
+
+        if (file.originalFilename!! != "employee_profiles.csv") {
+            throw Exception("Imported file is not valid")
+        }
 
         if (file.isEmpty)
             throw Exception("Empty file")

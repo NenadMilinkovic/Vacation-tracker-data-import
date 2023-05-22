@@ -1,16 +1,11 @@
 package com.vacation.tracker.dataImport.controller
 
-import com.opencsv.CSVReader
 import com.vacation.tracker.dataImport.annotations.ApiKeyProtected
-import com.vacation.tracker.dataImport.model.Employee
 import com.vacation.tracker.dataImport.service.EmployeeService
 import com.vacation.tracker.dataImport.service.UsedVacationService
 import com.vacation.tracker.dataImport.service.VacationService
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import java.io.InputStreamReader
-import java.text.SimpleDateFormat
 import java.util.*
 
 

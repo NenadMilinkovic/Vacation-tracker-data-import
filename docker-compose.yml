@@ -15,7 +15,7 @@ services:
   searchapp:
     container_name: data-search-container
     image: data-search-image
-    build: ./
+    build: /Users/nenad.milinkovic/Desktop/Vacation-tracker-data-search
     ports:
       - "8081:8081"
     environment:

@@ -26,6 +26,10 @@ class UsedVacationService(
     @Transactional
     fun addUsedVacationDays(file: MultipartFile) {
 
+        if (file.originalFilename!! != "used_vacation_dates.csv") {
+            throw Exception("Imported file is not valid")
+        }
+
         if (file.isEmpty)
             throw Exception("Empty file")
 
@@ -49,7 +53,7 @@ class UsedVacationService(
         calendar.time = startDate
         val year = calendar.get(Calendar.YEAR)
 
-        var vacation = vacationRepository.findByEmployeeIdAndYear(employee.id, year)?.let {
+        vacationRepository.findByEmployeeIdAndYear(employee.id, year)?.let {
             val diff: Long = endDate.time - startDate.time
             val spendDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
             val usedVacation = UsedVacation(

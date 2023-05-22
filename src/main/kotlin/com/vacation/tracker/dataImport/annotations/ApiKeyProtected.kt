@@ -5,5 +5,4 @@ package com.vacation.tracker.dataImport.annotations
     AnnotationTarget.FUNCTION
 )
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ApiKeyProtected {
-}
+annotation class ApiKeyProtected
